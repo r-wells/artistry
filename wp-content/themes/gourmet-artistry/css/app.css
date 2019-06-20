@@ -40,3 +40,21 @@
     font-weight: bold;
     text-transform: uppercase;
 }
+
+div.meal-recipes h2 {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+div.meal-recipes span {
+    color: #87a837;
+}
+
+div.meal-recipes .content {
+    background-color: #87a837;
+}
+div.meal-recipes .content a {
+    background-color: #ffffff;
+}

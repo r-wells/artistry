@@ -16,61 +16,60 @@ add_action('init', 'ga_events_post_type', 0 );
 add_action('init', 'meal_type_taxonomy');
 add_action('init', 'course_taxonomy');
 add_action('init', 'mood_taxonomy');
-add_action('init', 'type_event', 0 );
+add_action( 'init', 'type_event', 0 );
 
 function type_event() {
 
-      $labels = array(
-        'name'                       => _x( 'Types of Event', 'Taxonomy General Name', 'gourmet-artist' ),
-        'singular_name'              => _x( 'Type of Event', 'Taxonomy Singular Name', 'gourmet-artist' ),
-        'menu_name'                  => __( 'Type of Event', 'gourmet-artist' ),
-        'all_items'                  => __( 'All Types of Event', 'gourmet-artist' ),
-        'parent_item'                => __( 'Parent Type of Event', 'gourmet-artist' ),
-        'parent_item_colon'          => __( 'Parent Type of Event:', 'gourmet-artist' ),
-        'new_item_name'              => __( 'New Type of Event', 'gourmet-artist' ),
-        'add_new_item'               => __( 'Add Type of Event', 'gourmet-artist' ),
-        'edit_item'                  => __( 'Edit Type of Event', 'gourmet-artist' ),
-        'update_item'                => __( 'Update Type of Event', 'gourmet-artist' ),
-        'view_item'                  => __( 'View Type of Event', 'gourmet-artist' ),
-        'separate_items_with_commas' => __( 'Separate Type of Event with commas', 'gourmet-artist' ),
-        'add_or_remove_items'        => __( 'Add or remove Type of Event', 'gourmet-artist' ),
-        'choose_from_most_used'      => __( 'Choose from the most used', 'gourmet-artist' ),
-        'popular_items'              => __( 'Popular Types of Event', 'gourmet-artist' ),
-        'search_items'               => __( 'Search Types of Event', 'gourmet-artist' ),
-        'not_found'                  => __( 'Not Found', 'gourmet-artist' ),
-        'no_terms'                   => __( 'No Types of Event', 'gourmet-artist' ),
-        'items_list'                 => __( 'Type of Event list', 'gourmet-artist' ),
-        'items_list_navigation'      => __( 'Type of Event list navigation', 'gourmet-artist' )
-      );
-  
-    $args = array(
-      'labels'                     => $labels,
-      'hierarchical'               => true,
-      'public'                     => true,
-      'show_ui'                    => true,
-      'show_admin_column'          => true,
-      'show_in_nav_menus'          => true,
-      'show_tagcloud'              => true
-    );
-	  register_taxonomy( 'type_event', array( 'events' ), $args );
+	$labels = array(
+		'name'                       => _x( 'Types of Event', 'Taxonomy General Name', 'gourmet-artistry' ),
+		'singular_name'              => _x( 'Type of Event', 'Taxonomy Singular Name', 'gourmet-artistry' ),
+		'menu_name'                  => __( 'Type of Event', 'gourmet-artistry' ),
+		'all_items'                  => __( 'All Types of Event', 'gourmet-artistry' ),
+		'parent_item'                => __( 'Parent Type of Event', 'gourmet-artistry' ),
+		'parent_item_colon'          => __( 'Parent Type of Event:', 'gourmet-artistry' ),
+		'new_item_name'              => __( 'New Type of Event', 'gourmet-artistry' ),
+		'add_new_item'               => __( 'Add Type of Event', 'gourmet-artistry' ),
+		'edit_item'                  => __( 'Edit Type of Event', 'gourmet-artistry' ),
+		'update_item'                => __( 'Update Type of Event', 'gourmet-artistry' ),
+		'view_item'                  => __( 'View Type of Event', 'gourmet-artistry' ),
+		'separate_items_with_commas' => __( 'Separate Type of Event with commas', 'gourmet-artistry' ),
+		'add_or_remove_items'        => __( 'Add or remove Type of Event', 'gourmet-artistry' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'gourmet-artistry' ),
+		'popular_items'              => __( 'Popular Types of Event', 'gourmet-artistry' ),
+		'search_items'               => __( 'Search Types of Event', 'gourmet-artistry' ),
+		'not_found'                  => __( 'Not Found', 'gourmet-artistry' ),
+		'no_terms'                   => __( 'No Types of Event', 'gourmet-artistry' ),
+		'items_list'                 => __( 'Type of Event list', 'gourmet-artistry' ),
+		'items_list_navigation'      => __( 'Type of Event list navigation', 'gourmet-artistry' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'type_event', array( 'events' ), $args );
 
 }
 
 
 function meal_type_taxonomy() {
-    $labels = array(
-      'name'              => _x( 'Meal Type', 'taxonomy general name' ),
-      'singular_name'     => _x( 'Meal Type', 'taxonomy singular name' ),
-      'search_items'      => __( 'Search Meal Type' ),
-      'all_items'         => __( 'All Meal Types' ),
-      'parent_item'       => __( 'Parent Meal Type' ),
-      'parent_item_colon' => __( 'Parent Meal Type:' ),
-      'edit_item'         => __( 'Edit Meal Type' ),
-      'update_item'       => __( 'Update Meal Type' ),
-      'add_new_item'      => __( 'Add Meal Type' ),
-      'new_item_name'     => __( 'New Meal Type' ),
-      'menu_name'         => __( 'Meal Type' ),
-    );
+  $labels = array(
+  	'name'              => _x( 'Meal Type', 'taxonomy general name' ),
+  	'singular_name'     => _x( 'Meal Type', 'taxonomy singular name' ),
+  	'search_items'      => __( 'Search Meal Type' ),
+  	'all_items'         => __( 'All Meal Types' ),
+  	'parent_item'       => __( 'Parent Meal Type' ),
+  	'parent_item_colon' => __( 'Parent Meal Type:' ),
+  	'edit_item'         => __( 'Edit Meal Type' ),
+  	'update_item'       => __( 'Update Meal Type' ),
+  	'add_new_item'      => __( 'Add Meal Type' ),
+  	'new_item_name'     => __( 'New Meal Type' ),
+  	'menu_name'         => __( 'Meal Type' ),
+  );
 
   $args = array(
     'hierarchical'  => true, //like categories or tags
@@ -143,27 +142,27 @@ function ga_recipe_post_type() {
 
       // Labels for the Post Type
     $labels = array(
-      'name'                => _x( 'Recipes', 'Post Type General Name', 'gourmet-artist' ),
-      'singular_name'       => _x( 'Recipe', 'Post Type Singular Name', 'gourmet-artist' ),
-      'menu_name'           => __( 'Recipes', 'gourmet-artist' ),
-      'parent_item_colon'   => __( 'Parent Recipe', 'gourmet-artist' ),
-      'all_items'           => __( 'All Recipes', 'gourmet-artist' ),
-      'view_item'           => __( 'View Recipe', 'gourmet-artist' ),
-      'add_new_item'        => __( 'Add New Recipe', 'gourmet-artist' ),
-      'add_new'             => __( 'Add New Recipe', 'gourmet-artist' ),
-      'edit_item'           => __( 'Edit Recipe', 'gourmet-artist' ),
-      'update_item'         => __( 'Update Recipe', 'gourmet-artist' ),
-      'search_items'        => __( 'Search Recipe', 'gourmet-artist' ),
-      'not_found'           => __( 'No recipes found', 'gourmet-artist' ),
-      'not_found_in_trash'  => __( 'Not found in trash', 'gourmet-artist' ),
+      'name'                => _x( 'Recipes', 'Post Type General Name', 'gourmet-artistry' ),
+      'singular_name'       => _x( 'Recipe', 'Post Type Singular Name', 'gourmet-artistry' ),
+      'menu_name'           => __( 'Recipes', 'gourmet-artistry' ),
+      'parent_item_colon'   => __( 'Parent Recipe', 'gourmet-artistry' ),
+      'all_items'           => __( 'All Recipes', 'gourmet-artistry' ),
+      'view_item'           => __( 'View Recipe', 'gourmet-artistry' ),
+      'add_new_item'        => __( 'Add New Recipe', 'gourmet-artistry' ),
+      'add_new'             => __( 'Add New Recipe', 'gourmet-artistry' ),
+      'edit_item'           => __( 'Edit Recipe', 'gourmet-artistry' ),
+      'update_item'         => __( 'Update Recipe', 'gourmet-artistry' ),
+      'search_items'        => __( 'Search Recipe', 'gourmet-artistry' ),
+      'not_found'           => __( 'No recipes found', 'gourmet-artistry' ),
+      'not_found_in_trash'  => __( 'Not found in trash', 'gourmet-artistry' ),
     );
 
     // Another Customizations
     $args = array(
-        'label'   => __('Recipes','gourmet-artist' ),
-        'description' => __('Recipes for Gourmet Artistry', 'gourmet-artist'),
+        'label'   => __('Recipes','gourmet-artistry' ),
+        'description' => __('Recipes for Gourmet Artistry', 'gourmet-artistry'),
         'labels'  => $labels,
-        'supports' => array('title', 'editor', 'thumbnail','revisions',  ),
+        'supports' => array('title', 'editor', 'thumbnail','revisions'),
         'hierarchical' => false,
         'public' => true,
         'show_ui' => true,
@@ -187,25 +186,25 @@ function ga_events_post_type() {
 
       // Labels for the Post Type
     $labels = array(
-      'name'                => _x( 'Events', 'Post Type General Name', 'gourmet-artist' ),
-      'singular_name'       => _x( 'Event', 'Post Type Singular Name', 'gourmet-artist' ),
-      'menu_name'           => __( 'Events', 'gourmet-artist' ),
-      'parent_item_colon'   => __( 'Parent Event', 'gourmet-artist' ),
-      'all_items'           => __( 'All Events', 'gourmet-artist' ),
-      'view_item'           => __( 'View Event', 'gourmet-artist' ),
-      'add_new_item'        => __( 'Add New Event', 'gourmet-artist' ),
-      'add_new'             => __( 'Add New Event', 'gourmet-artist' ),
-      'edit_item'           => __( 'Edit Event', 'gourmet-artist' ),
-      'update_item'         => __( 'Update Event', 'gourmet-artist' ),
-      'search_items'        => __( 'Search Event', 'gourmet-artist' ),
-      'not_found'           => __( 'No events found', 'gourmet-artist' ),
-      'not_found_in_trash'  => __( 'Not found in trash', 'gourmet-artist' ),
+      'name'                => _x( 'Events', 'Post Type General Name', 'gourmet-artistry' ),
+      'singular_name'       => _x( 'Event', 'Post Type Singular Name', 'gourmet-artistry' ),
+      'menu_name'           => __( 'Events', 'gourmet-artistry' ),
+      'parent_item_colon'   => __( 'Parent Event', 'gourmet-artistry' ),
+      'all_items'           => __( 'All Events', 'gourmet-artistry' ),
+      'view_item'           => __( 'View Event', 'gourmet-artistry' ),
+      'add_new_item'        => __( 'Add New Event', 'gourmet-artistry' ),
+      'add_new'             => __( 'Add New Event', 'gourmet-artistry' ),
+      'edit_item'           => __( 'Edit Event', 'gourmet-artistry' ),
+      'update_item'         => __( 'Update Event', 'gourmet-artistry' ),
+      'search_items'        => __( 'Search Event', 'gourmet-artistry' ),
+      'not_found'           => __( 'No events found', 'gourmet-artistry' ),
+      'not_found_in_trash'  => __( 'Not found in trash', 'gourmet-artistry' ),
     );
 
     // Another Customizations
     $args = array(
-        'label'   => __('Events','gourmet-artist' ),
-        'description' => __('Events for Gourmet Artistry', 'gourmet-artist'),
+        'label'   => __('Events','gourmet-artistry' ),
+        'description' => __('Events for Gourmet Artistry', 'gourmet-artistry'),
         'labels'  => $labels,
         'supports' => array('title', 'editor',),
         'hierarchical' => false,

@@ -18,9 +18,6 @@
 		<?php } else { ?>
 			<div class="large-6 columns">
 				<?php the_post_thumbnail('entry'); ?>
-				<?php if(is_home()): ?>
-					<span class="alert label"><?php echo get_post_type(); ?></span>
-				<?php endif; ?>
 			</div>
 	<?php } ?>
 
@@ -43,14 +40,6 @@
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<?php if('recipes' === get_post_type()):  ?>
-			<div class="taxonomies">
-				<div class="price-range"><?php echo get_the_term_list($post->ID, 'price_range', 'Price Range: ', ',', ' '); ?></div>
-				<div class="meal-type"><?php echo get_the_term_list($post->ID, 'meal-type', 'Meal: ', ',', ' '); ?></div>
-				<div class="course"><?php echo get_the_term_list($post->ID, 'course', 'Course: ', ',', ' ') ?></div>
-				<div class="mood"><?php echo get_the_term_list($post->ID, 'mood', 'Mood: ', ',', ''); ?></div>
-			</div>
-		<?php endif; ?>
 		<?php
 			if(is_single()) {
 				the_content( sprintf(

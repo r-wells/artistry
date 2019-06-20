@@ -11,10 +11,16 @@
  *
  * @package Gourmet_Artistry
  */
-
 get_header(); ?>
 
 <?php get_template_part('template-parts/slider', 'entries'); ?>
+
+<div class="meal-recipes row">
+	<h2 id="time" class="text-center">Make This For: </h2>
+	<ul id="meal-per-hour" class="no-bullet">
+		
+	</ul>
+</div>
 
 <div id="filter">
 	<h2 class="text-center">Filter By Course: </h2>
@@ -45,7 +51,6 @@ get_header(); ?>
 			<h2 class="latest-entries text-center separator">Latest Entries</h2>
 		<?php
 		if ( have_posts() ) :
-
 			if ( is_home() && ! is_front_page() ) : ?>
 				<header>
 					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
@@ -54,25 +59,18 @@ get_header(); ?>
 
 			<?php
 			endif;
-
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
-
 				/*
 				 * Include the Post-Format-specific template for the content.
 				 * If you want to override this in a child theme, then include a file
 				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 				 */
 				get_template_part( 'template-parts/content', get_post_format() );
-
 			endwhile;
-
 			the_posts_navigation();
-
 		else :
-
 			get_template_part( 'template-parts/content', 'none' );
-
 		endif; ?>
 
 		</main><!-- #main -->
