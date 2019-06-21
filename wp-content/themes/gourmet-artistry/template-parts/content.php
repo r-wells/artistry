@@ -40,23 +40,62 @@
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">
-		<?php
-			if(is_single()) {
-				the_content( sprintf(
-					/* translators: %s: Name of current post. */
-					wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'gourmet-artistry' ), array( 'span' => array( 'class' => array() ) ) ),
-					the_title( '<span class="screen-reader-text">"', '"</span>', false )
-				) );
-			} else {
-				the_excerpt();
-				echo '<a class="button" href='.get_the_permalink() . ">Read More</a>";
-			}
+		<?php if('recipes' === get_post_type()): ?>
+			<div class="taxonomies">
+				<div class="price-range">
+					<?php echo get_the_term_list($post->ID, 'price_range', 'Price Range: ', ', ', ''); ?>
+				</div>
+				<div class="meal-type">
+					<?php echo get_the_term_list($post->ID, 'meal-type', 'Meal: ', ', ', ''); ?>
+				</div>
+				<div class="course">
+					<?php echo get_the_term_list($post->ID, 'course', 'Course: ', ', ', ''); ?>
+				</div>
+				<div class="mood">
+					<?php echo get_the_term_list($post->ID, 'mood', 'Mood: ', ', ', ''); ?>
+				</div>
+			</div>
+			<?php if(is_single()): ?>
+				<div class="extra-information">
+					<?php $calories = get_post_meta(get_the_ID(), 'input-metabox', true); ?>
+					<?php if($calories) : ?>
+						<div class="calories">
+							<p>Calories: <?php echo $calories; ?></p>
+						</div>
+					<?php endif; ?>
+					<?php $rating = get_post_meta(get_the_ID(), 'dropdown-metabox', true); ?>
+					<?php if($rating) : ?>
+						<div class="rating">
+							<p>Rating: <?php echo $rating; ?></p>
+						</div>
+					<?php endif; ?>
+					<?php $description = get_post_meta(get_the_ID(), 'textarea-metabox', true); ?>
+					<?php if($description) : ?>
+						<div class="rating">
+							<p>Recipe Description: <?php echo $description; ?></p>
+						</div>
+					<?php endif; ?>
+				</div> <!-- .extra-information -->
 
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'gourmet-artistry' ),
-				'after'  => '</div>',
-			) );
-		?>
+			<?php endif; ?> <!-- Checking if is_single() -->
+		<?php endif; ?> <!-- if('recipes' === get_post_type()): ?>
+			<?php
+				if(is_single()) {
+					the_content( sprintf(
+						/* translators: %s: Name of current post. */
+						wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'gourmet-artistry' ), array( 'span' => array( 'class' => array() ) ) ),
+						the_title( '<span class="screen-reader-text">"', '"</span>', false )
+					) );
+				} else {
+					the_excerpt();
+					echo '<a class="button" href='.get_the_permalink() . ">Read More</a>";
+				}
+
+				wp_link_pages( array(
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'gourmet-artistry' ),
+					'after'  => '</div>',
+				) );
+			?>
 	</div><!-- .entry-content -->
 
 	</div>

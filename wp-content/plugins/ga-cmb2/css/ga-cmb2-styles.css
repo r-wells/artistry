@@ -1,0 +1,52 @@
+ul.list-events {
+
+}
+h2.event-title {
+  border-bottom: 1px dashed #333;
+  padding-bottom: 10px;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+ul.list-events li {
+
+}
+ul.list-events li h3{
+background-color: #78a837;
+padding:10px;
+color:white;
+font-size: 20px;
+}
+ul.list-events li .event-info {
+  padding:20px;
+  background-color: #f4f4f4;
+  margin-top: 10px;
+}
+ul.list-events li .event-info p {
+  color:#78a837;
+}
+ul.list-events li .event-info p:last-child {
+  margin:0;
+}
+ul.list-events li .event-info b {
+  text-transform: uppercase;
+  font-size:14px;
+  color: black;
+
+}
+ul.list-events li .agenda  {
+  margin: 10px 0;
+}
+ul.list-events li .agenda h4 {
+  padding-bottom: 10px;
+  color:#78a837;
+  text-shadow: 2px 2px 2px #d7d7d7;
+  text-transform: uppercase;
+}
+ul.list-events li .agenda p {
+  padding:5px;
+  font-weight: bold;
+  margin:0;
+}
+ul.list-events li .agenda p:hover {
+  background-color: #d7d7d7;
+}
