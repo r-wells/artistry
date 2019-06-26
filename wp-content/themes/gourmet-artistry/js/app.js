@@ -1,7 +1,69 @@
-
 jQuery(document).foundation();
 
 jQuery(function($) {
+    
+    $('#search-btn').on('click', function(){
+
+        $('#result').html('');
+        
+        var recipe = $('#recipe_name').val();
+        var price_range = $('#price_range').val();
+        var course = $('#course').val();
+        var calories = $('#calories').val();
+
+        var postData = {
+            action: 'advancedSearch',
+            recipe_name: recipe,
+            price_range: price_range,
+            course: course,
+            calories: calories
+        }
+        
+        jQuery.ajax({
+            url: admin_url.ajax_url,
+            type: 'post',
+            data: postData
+        }).done(function(response){
+            $.each(response, function(index, object){
+                var result = '<div class="medium-6 columns">';
+                    result += '<div class="row">';
+                    result += '<div class="medium-6 columns">';
+                    result += object.image;
+                    result += '</div>';
+                    result += '<div class="medium-6 columns">';
+                    result += '<h2>' + object.name + '</h2>';
+                    result += '<p>' + object.content + '</p>';
+                    result += '<a class="button" href="' + object.link + '">View Recipe</a>';
+                    result += '</div>'; //Closing row
+                    result += '</div>'; //Closing medium-6
+
+                $('#result').append(result);
+            });
+            if(!response.length > 0) {
+                var result = '<h2>No Results Found, Try With New Search Queries</h2>';
+                $('#results_found').html(result);
+            } else {
+                var result = '<h2>There are: ' + response.length + ' results</h2>';
+                $('#results_found').html(result);
+            }
+        });
+    })
+
+    //Call Filterizr libary
+    if($('.filtr-container').length){
+        $('.filtr-container').filterizr();
+    }
+
+    if($('.filtr-container-packed').length){
+        $('.filtr-container-packed').filterizr({
+            layout: 'packed'
+        });
+    }
+
+    $('.simplefilter li').click(function() {
+        $('.simplefilter li').removeClass('active');
+        $(this).addClass('active');
+    })
 
     $('#recipes > div ').not(':first').hide();
     $('#filter .menu li:first-child').addClass('active');

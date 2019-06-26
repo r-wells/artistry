@@ -58,3 +58,23 @@ div.meal-recipes .content {
 div.meal-recipes .content a {
     background-color: #ffffff;
 }
+
+/*Filter CSS*/
+ul.simplefilter {
+    margin-bottom: 20px!important;
+}
+
+ul.simplefilter li {
+    color: white;
+    cursor: pointer;
+    background-color: #78a837;
+    padding: 1rem 2rem;
+}
+
+ul.simplefilter li.active {
+    background-color: #212121;
+}
+
+.cmb2-metabox-title {
+    font-size: 24px!important;
+}

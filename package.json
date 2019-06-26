@@ -1,0 +1,19 @@
+{
+  "name": "gourmet",
+  "version": "1.0.0",
+  "description": "Creates Gutenberg Blocks For WP WordPress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r-wells/artistry.git"
+  },
+  "author": "Ryan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/r-wells/artistry/issues"
+  },
+  "homepage": "https://github.com/r-wells/artistry#readme"
+}

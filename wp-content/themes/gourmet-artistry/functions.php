@@ -15,6 +15,62 @@ if ( ! function_exists( 'gourmet_artistry_setup' ) ) :
  * as indicating support for post thumbnails.
  */
 
+
+function advancedSearch() {
+	$recipe = $_POST['recipe_name'];
+	$price = $_POST['price_range'];
+	$course = $_POST['course'];
+	$calories = $_POST['calories'];
+	$calories = explode('-', $calories);
+	$min = $calories[0];
+	$max = $calories[1];
+
+	$args = array(
+		'post_type' => 'recipes',
+		'posts_per_page' => -1,
+		's' => $recipe,
+		'tax_query' => array(
+			'relation' => 'OR',
+			array(
+				'taxonomy' => 'price_range',
+				'field' => 'slug',
+				'terms' => $price
+			),
+			array(
+				'taxonomy' => 'course',
+				'field' => 'slug',
+				'terms' => $course
+			),
+		),
+		'meta_ query' => array(
+			array(
+				'key' => 'input-metabox',
+				'value' => array($min, $max),
+				'type' => 'numeric',
+				'compare' => 'BETWEEN'
+			),
+		),
+	);
+	$posts = get_posts($args);
+	$list = array();
+	foreach($posts as $post){
+		setup_postdata( $post );
+		$list[] = array(
+			'object' => $post,
+			'id' => $post->ID,
+			'name' => $post->post_title,
+			'content' => wp_trim_words($post->post_content, 20),
+			'image' => get_the_post_thumbnail( $post->ID, 'entry'),
+			'link' => get_permalink( $post->ID )
+		);
+	}
+	header("Content-type: application/json");
+	echo json_encode($list);
+	die;
+}
+add_action('wp_ajax_nopriv_advancedSearch', 'advancedSearch');
+add_action('wp_ajax_advancedSearch', 'advancedSearch');
+
 function recipe_breakfast(){
 	$args = array(
 		'post_type' => 'recipes',
@@ -112,6 +168,7 @@ add_action('wp_ajax_nopriv_recipe_dinner', 'recipe_dinner');
 add_action('wp_ajax_recipe_dinner', 'recipe_dinner');
 
 function filter_course_terms($term) {
+	global $post;
 	$args = array(
 		'posts_per_page' => 4,
 		'post_type' => 'recipes',
@@ -124,7 +181,7 @@ function filter_course_terms($term) {
 			)
 		)
 	);
-	$query = new WP_Query($args); 
+	$query = new WP_Query($args);
 	echo '<div id="' . $term . '" class="row">';
 		while($query->have_posts()): $query->the_post();
 		echo '<div class="small-6 medium-3 columns">';
@@ -138,6 +195,7 @@ function filter_course_terms($term) {
 	endwhile; wp_reset_postdata();
 	echo '</div>';
 }
+
 function print_recipes_posts($query){
 	//not admin but the main query
 	if(!is_admin() && $query->is_main_query()){
@@ -148,10 +206,12 @@ function print_recipes_posts($query){
 	}
 }
 add_action('pre_get_posts', 'print_recipes_posts');
+
 function gourmet_artistry_exerpt($length) {
 	return 30;
 }
 add_filter('excerpt_length','gourmet_artistry_exerpt', 999);
+
 function gourmet_artistry_setup() {
 	/*
 	 * Make theme available for translation.
@@ -179,6 +239,13 @@ function gourmet_artistry_setup() {
 	add_image_size( 'entry', 619, 462, true );
 	add_image_size( 'single-image', 800, 300, true );
 	add_image_size( 'filter-recipes', 540, 800, true );
+
+	//Packed image sizes
+	add_image_size( 'packed_size1', 550, 1100, true );
+	add_image_size( 'packed_size2', 550, 550, true );
+	add_image_size( 'packed_size3', 550, 257, true );
+	add_image_size( 'packed_size4', 550, 137, true );
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary', 'gourmet-artistry' ),
@@ -244,6 +311,8 @@ function gourmet_artistry_scripts() {
 	wp_enqueue_script( 'gourmet-artistry-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 	wp_enqueue_script('foundation-js', get_template_directory_uri() . '/js/foundation.js', array('jquery'), '20151215', true );
   wp_enqueue_script('what-input', get_template_directory_uri() . '/js/what-input.min.js', array(), '20151215', true );
+  wp_enqueue_script('filterizr', get_template_directory_uri() . '/js/jquery.filterizr.min.js', array(), '20151215', true );
+  wp_enqueue_script('packer', get_template_directory_uri() . '/js/packer.js', array(), '20151215', true );
   wp_enqueue_script('app-js', get_template_directory_uri() . '/js/app.js', array(), '20151215', true );
 	wp_localize_script('app-js', 'admin_url', array(
 		'ajax_url' => admin_url('admin-ajax.php')

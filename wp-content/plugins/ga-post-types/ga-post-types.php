@@ -175,6 +175,8 @@ function ga_recipe_post_type() {
         'has_archive' => true,
         'exclude_from_search' => false,
         'capability_type' => 'page',
+        'show_in_rest' => true,
+        'rest_base' => 'recipes-api'
     );
 
     // register the post Type

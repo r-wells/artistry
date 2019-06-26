@@ -44,6 +44,48 @@ get_header(); ?>
 	</div> <!--#recipes -->
 </div>	<!-- #filter -->
 
+<div id="search-form" class="row">
+	<h2 class="text-center">Advanced Search</h2>
+	<div class="search">
+		<input type="text" name="recipe_name" id="recipe_name" placeholder="Search By Recipe Name...">
+		<select name="calories" id="calories">
+			<option selected="true" disabled="disabled">Calories</option>
+			<option value="0-200">200 or less</option>
+			<option value="201-400">201 to 400</option>
+			<option value="401-600">401 to 600</option>
+			<option value="601-10000">600 to 10000</option>
+		</select>
+		<select name="price_range" id="price_range">
+			<?php
+				$terms = get_terms('price_range', array(
+					'hide-empty' => false
+				));
+				foreach($terms as $term) {
+					echo '<option value="' . $term->slug . '">' . $term->name . '</option>';
+				}
+			?>
+		</select>
+
+		<select name="course" id="course">
+			<?php
+				$terms = get_terms('course', array(
+					'hide-empty' => false
+				));
+				foreach($terms as $term) {
+					echo '<option value="' . $term->slug . '">' . $term->name . '</option>';
+				}
+			?>
+		</select>
+		<button id="search-btn" type="button" class="button">Search</button>
+	</div>
+
+	<div id="result" class="row">
+
+	</div>
+	<div id="results_found" class="row">
+
+	</div>
+</div>
 
 <div class="row">
 	<div id="primary" class="content-area medium-8 columns">

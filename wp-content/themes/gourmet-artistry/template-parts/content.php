@@ -95,8 +95,9 @@
 					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'gourmet-artistry' ),
 					'after'  => '</div>',
 				) );
-			?>
-	</div><!-- .entry-content -->
+			?> -->
+			<a class="previous_recipe_link" href="<?php echo get_permalink(get_previous_post()->ID); ?>" data-previous-recipe="<?php echo get_previous_post()->ID; ?>">Previous Recipe</a>
+	</div> <!-- .entry-content -->
 
 	</div>
 </article><!-- #post-## -->
